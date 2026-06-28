@@ -1,12 +1,17 @@
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-
 const Hero = () => {
   return (
-    <div className="h-[75vh] w-full flex flex-col justify-center items-center text-center px-8 gap-6 bg-[#6b222a]">
+    <section className="  grid grid-cols-[40%_60%] h-[100vh] w-full">
+      <div className="h-full overflow-hidden ">
+        <img src="/images/p1.jpeg" className="h-full w-full object-ccover"/>
+      </div>
+
+
+    <div className=" flex flex-col justify-center items-center text-center px-8 gap-6 bg-[#6b222a]">
       <h1 className="text-6xl font-light text-[#d9a945]">
         Nutribites
       </h1>
-      <h2 className="text-2xl font-light text-[#f5e0df]">
+      <h2 className="text-xl font-light text-[#f5e0df] italic">
         Homemade Panjeeri — made with love
       </h2>
       <p className="text-sm text-[#c29293] max-w-md">
@@ -19,6 +24,7 @@ const Hero = () => {
         </button>
       </LocalizedClientLink>
     </div>
+    </section>
   )
 }
 

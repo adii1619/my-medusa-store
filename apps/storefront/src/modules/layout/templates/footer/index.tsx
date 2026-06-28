@@ -1,155 +1,41 @@
-import { listCategories } from "@lib/data/categories"
-import { listCollections } from "@lib/data/collections"
-import { Text, clx } from "@medusajs/ui"
-
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import MedusaCTA from "@modules/layout/components/medusa-cta"
+import { Text } from "@medusajs/ui"
+import { FaEnvelope, FaGlobe, FaInstagram, FaFacebook} from "react-icons/fa"
+export default  function Footer() {
 
-export default async function Footer() {
-  const { collections } = await listCollections({
-    fields: "*products",
-  })
-  const productCategories = await listCategories()
 
   return (
-    <footer className="border-t border-ui-border-base w-full">
-      <div className="content-container flex flex-col w-full">
-        <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between py-40">
-          <div>
-            <LocalizedClientLink
-              href="/"
-              className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
-            >
-              Medusa Store
-            </LocalizedClientLink>
-          </div>
-          <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-3">
-            {productCategories && productCategories?.length > 0 && (
-              <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus txt-ui-fg-base">
-                  Categories
-                </span>
-                <ul
-                  className="grid grid-cols-1 gap-2"
-                  data-testid="footer-categories"
-                >
-                  {productCategories?.slice(0, 6).map((c) => {
-                    if (c.parent_category) {
-                      return
-                    }
+    <footer className="border-t border-[#E37D04] w-full">
+      <div className=" gap-16 flex flex-col items-center w-full py-8 bg-[#450A0A]">
 
-                    const children =
-                      c.category_children?.map((child) => ({
-                        name: child.name,
-                        handle: child.handle,
-                        id: child.id,
-                      })) || null
-
-                    return (
-                      <li
-                        className="flex flex-col gap-2 text-ui-fg-subtle txt-small"
-                        key={c.id}
-                      >
-                        <LocalizedClientLink
-                          className={clx(
-                            "hover:text-ui-fg-base",
-                            children && "txt-small-plus"
-                          )}
-                          href={`/categories/${c.handle}`}
-                          data-testid="category-link"
-                        >
-                          {c.name}
-                        </LocalizedClientLink>
-                        {children && (
-                          <ul className="grid grid-cols-1 ml-3 gap-2">
-                            {children &&
-                              children.map((child) => (
-                                <li key={child.id}>
-                                  <LocalizedClientLink
-                                    className="hover:text-ui-fg-base"
-                                    href={`/categories/${child.handle}`}
-                                    data-testid="category-link"
-                                  >
-                                    {child.name}
-                                  </LocalizedClientLink>
-                                </li>
-                              ))}
-                          </ul>
-                        )}
-                      </li>
-                    )
-                  })}
-                </ul>
-              </div>
-            )}
-            {collections && collections.length > 0 && (
-              <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus txt-ui-fg-base">
-                  Collections
-                </span>
-                <ul
-                  className={clx(
-                    "grid grid-cols-1 gap-2 text-ui-fg-subtle txt-small",
-                    {
-                      "grid-cols-2": (collections?.length || 0) > 3,
-                    }
-                  )}
-                >
-                  {collections?.slice(0, 6).map((c) => (
-                    <li key={c.id}>
-                      <LocalizedClientLink
-                        className="hover:text-ui-fg-base"
-                        href={`/collections/${c.handle}`}
-                      >
-                        {c.title}
-                      </LocalizedClientLink>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            <div className="flex flex-col gap-y-2">
-              <span className="txt-small-plus txt-ui-fg-base">Medusa</span>
-              <ul className="grid grid-cols-1 gap-y-2 text-ui-fg-subtle txt-small">
-                <li>
-                  <a
-                    href="https://github.com/medusajs"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-ui-fg-base"
-                  >
-                    GitHub
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://docs.medusajs.com"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-ui-fg-base"
-                  >
-                    Documentation
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://github.com/medusajs/nextjs-starter-medusa"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-ui-fg-base"
-                  >
-                    Source code
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
+        <div className="flex flex-col gap-4 items-center ">
+        <LocalizedClientLink
+          href="/"
+          className="text-3xl text-[#FFF1F2] font-bold uppercase"
+        >
+          NUTRIBITES PANJEERI
+        </LocalizedClientLink>
+        <div className="flex gap-4 flex-wrap justify-center text-[#FECDD3]">
+          <LocalizedClientLink href="">Shipping & Return</LocalizedClientLink>
+          <LocalizedClientLink href="">Privacy Policy</LocalizedClientLink>
+          <LocalizedClientLink href="">Terms of Service</LocalizedClientLink>
+          <LocalizedClientLink href="">Contact us</LocalizedClientLink>
+          <LocalizedClientLink href="">WholeSale</LocalizedClientLink>
         </div>
-        <div className="flex w-full mb-16 justify-between text-ui-fg-muted">
-          <Text className="txt-compact-small">
-            © {new Date().getFullYear()} Medusa Store. All rights reserved.
+        </div>
+        <div className="flex  gap-2 text-white">
+          <a href=""><FaInstagram size={20}/></a>
+          <a href=""><FaFacebook size={20}/></a>
+          <a href=""><FaEnvelope size={20}/></a>
+          <a href=""><FaGlobe size={20}/></a>
+        </div>
+
+        <div className="w-full  flex flex-col  justify-center text-ui-fg-muted items-center">
+          <div className="content-container h-px w-full  bg-slate-400 "></div>
+          <Text className="txt-compact-small text-[#FECDD3]">
+            © {new Date().getFullYear()} NUTRIBITES PANJEERI. A HANDCRAFTED LEGACY.
           </Text>
-          <MedusaCTA />
+          {/* <MedusaCTA /> */}
         </div>
       </div>
     </footer>

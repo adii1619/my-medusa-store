@@ -99,4 +99,7 @@ export default async function orderPlacedHandler({
 
 export const config: SubscriberConfig={
     event:"order.placed",
+    context:{
+        subscriberId:"nutribites-order-placed",
+    },
 }
